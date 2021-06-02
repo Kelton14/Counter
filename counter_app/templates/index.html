@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">    
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 name="visit">You have visited this site: {{ visit }}  times!! </h1>
+        <h1 name="count">You said you visited the site: {{ count }} times!!</h1>
+        <form action="/destroy_session" method="POST">
+        {% csrf_token %}
+            <input class="btn btn-primary" type="submit" value="Reset" > 
+        </form>
+        <form class="times2" action="/by_two" method="POST">
+        {% csrf_token %}
+            <input class="btn btn-primary" type="submit" value="Increment by 2" > 
+        </form>
+        <form class="times2" action="/by_x" method="POST">
+        {% csrf_token %}
+            <input type="number" name="number" placeholder="Input Increment" >
+            <input class="btn btn-primary" type="submit" value="Do it!"> 
+        </form>
+    </div>
+</body>
+</html>
